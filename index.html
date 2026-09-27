@@ -63,7 +63,8 @@
     }
     document.querySelectorAll('.tab').forEach(button=>button.addEventListener('click',()=>{state.subject=button.dataset.subject;document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-pressed',String(x===button)));render()}));
     $('#search').addEventListener('input',event=>{state.query=event.target.value.trim();render()});
-    fetch('./resources.json').then(response=>{if(!response.ok)throw new Error('resources');return response.json()}).then(items=>{state.items=items;for(const subject of ['國語','數學','社會'])$(`#count-${subject}`).textContent=items.filter(x=>x.subject===subject).length;$('#count-all').textContent=items.length;render()}).catch(()=>{$('#result-text').textContent='工具清單載入失敗，請確認 resources.json 與 index.html 位於同一資料夾。';$('#cards').innerHTML='<div class="empty">目前無法載入清單。</div>'});
+    fetch('./resources.json?v=2aa246c').then(response=>{if(!response.ok)throw new Error('resources');return response.json()}).then(items=>{state.items=items;for(const subject of ['國語','數學','社會'])$(`#count-${subject}`).textContent=items.filter(x=>x.subject===subject).length;$('#count-all').textContent=items.length;render()}).catch(()=>{$('#result-text').textContent='工具清單載入失敗，請確認 resources.json 與 index.html 位於同一資料夾。';$('#cards').innerHTML='<div class="empty">目前無法載入清單。</div>'});
   </script>
 </body>
 </html>
+
